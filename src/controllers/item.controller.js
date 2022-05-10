@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const host = "http://127.0.0.1:5000";
+import Config from './config.json'
 
 export const getAllAvailableItems = async () => {
     return new Promise(async (resolve, reject) => {
-        let apiUrl = `${host}/item/getAvail`;
+        let apiUrl = `${Config.host}/item/getAvail`;
         try {
             let result = await axios.get(apiUrl);
             resolve(result);

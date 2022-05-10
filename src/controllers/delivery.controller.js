@@ -1,10 +1,9 @@
 import axios from 'axios'
-
-const host = "http://127.0.0.1:5000";
+import Config from './config.json'
 
 export const getAllDeliveries = async () => {
     return new Promise(async (resolve, reject) => {
-        let apiUrl = `${host}/delivery/getAll`;
+        let apiUrl = `${Config.host}/delivery/getAll`;
         try {
             let result = await axios.get(apiUrl);
             resolve(result);
@@ -16,7 +15,7 @@ export const getAllDeliveries = async () => {
 
 export const getDeliveryByBillID = async (id) => {
     return new Promise(async (resolve, reject) => {
-        let apiUrl = `${host}/delivery/get/${id}`;
+        let apiUrl = `${Config.host}/delivery/get/${id}`;
         try {
             let result = await axios.get(apiUrl);
             resolve(result);
@@ -28,7 +27,7 @@ export const getDeliveryByBillID = async (id) => {
 
 export const updateDeliveryState = async (id, data) => {
     return new Promise(async (resolve, reject) => {
-        let apiUrl = `${host}/delivery/update/${id}`;
+        let apiUrl = `${Config.host}/delivery/update/${id}`;
         try {
             let result = await axios.patch(apiUrl, data);
             resolve(result);
@@ -40,7 +39,7 @@ export const updateDeliveryState = async (id, data) => {
 
 export const createDelivery = async (data) => {
     return new Promise(async (resolve, reject) => {
-        let apiUrl = `${host}/delivery/create`;
+        let apiUrl = `${Config.host}/delivery/create`;
         try {
             let result = await axios.post(apiUrl, data);
             resolve(result);
