@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, useHistory, withRouter } from 'react-router-dom';
 import billingRoutes from './routes/billing'
 import indexRoutes from './routes/index'
+import adminRoutes from './routes/admin.routes'
 import { checkSignedIn, getUserdetails } from './controllers/user.controller'
 
 class RootRouter extends React.Component {
@@ -20,7 +21,7 @@ class RootRouter extends React.Component {
             }
     
             if (checkSignedInVal === true && role === "Admin") {
-                routes = [...billingRoutes, ...routes];
+                routes = [...adminRoutes, ...routes];
             }
         }
 

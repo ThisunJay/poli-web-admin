@@ -38,7 +38,7 @@ function Navbar() {
           <h3 className='light mx-5 mt-3' style={{ color: "white" }}>PoliWeb</h3>
 
           <div style={{ color: 'white', marginTop: '10px', marginRight: '10px' }} >
-            <p className="p-0 m-0" style={{ fontSize: '12px' }}>{login && user.fullName} <FaIcons.FaSignOutAlt onClick={SignOut} style={{marginLeft:'3px',}} /></p>
+            <p className="p-0 m-0" style={{ fontSize: '12px' }}>{login && user.fullName} <FaIcons.FaSignOutAlt onClick={SignOut} style={{marginLeft:'3px', cursor: 'pointer'}} /></p>
             <p className="p-0 m-0" style={{ fontSize: '10px' }}>{login && user.email}</p>
             
           </div>

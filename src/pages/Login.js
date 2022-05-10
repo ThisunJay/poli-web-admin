@@ -28,12 +28,11 @@ function Login() {
     login(data).then(res => {
       const loginData = res.data
       setCookies(loginData.token, loginData.user)
-      window.location.replace("/billing");
+      window.location.replace("/Home");
     }).catch(err => {
       setEmailval('')
       setPassval('')
       toast.error("Invalid credentials")
-
     })
   }
 
@@ -42,7 +41,7 @@ function Login() {
     let alreadyLogin = checkSignedIn()
     console.log(alreadyLogin);
     if (alreadyLogin) {
-      window.location.replace('/billing')
+      window.location.replace('/Home')
     }
   }, []);
 
