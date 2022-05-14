@@ -28,4 +28,10 @@ export const SidebarData = [
     icon: <AiIcons.AiFillCaretRight />,
     cName: 'nav-text'
   },
+  {
+    title: 'Bonds',
+    path: '/allBonds',
+    icon: <AiIcons.AiFillCaretRight />,
+    cName: 'nav-text'
+  },
 ];

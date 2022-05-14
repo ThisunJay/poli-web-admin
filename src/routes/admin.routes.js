@@ -4,6 +4,8 @@ import AllClients from '../pages/AllClients'
 import CreateClient from '../pages/CreateClient'
 import AllEmployees from '../pages/AllEmployees'
 import CreateEmployee from '../pages/CreateEmployee'
+import AllBonds from '../pages/AllBonds'
+import CreateBond from '../pages/CreateBond'
 
 let adminRoutes = [
     {
@@ -41,7 +43,19 @@ let adminRoutes = [
         name: "Create Employee",
         component: CreateEmployee,
         exact: true,
-    }
+    },
+    {
+        path: "/allBonds",
+        name: "All Bonds",
+        component: AllBonds,
+        exact: true,
+    },
+    {
+        path: "/createBond",
+        name: "Create Bond",
+        component: CreateBond,
+        exact: true,
+    },
 ]
 
 export default adminRoutes;
