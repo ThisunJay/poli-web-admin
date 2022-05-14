@@ -7,13 +7,25 @@ export const SidebarData = [
   {
     title: 'Home',
     path: '/',
-    icon: <AiIcons.AiFillHome />,
+    icon: <AiIcons.AiFillCaretRight />,
     cName: 'nav-text'
   },
   {
-    title: 'Create User',
-    path: '/createUser',
-    icon: <AiIcons.AiFillCloud />,
+    title: 'Users',
+    path: '/allUsers',
+    icon: <AiIcons.AiFillCaretRight />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Clients',
+    path: '/allClients',
+    icon: <AiIcons.AiFillCaretRight />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Employees',
+    path: '/allEmployees',
+    icon: <AiIcons.AiFillCaretRight />,
     cName: 'nav-text'
   },
 ];
