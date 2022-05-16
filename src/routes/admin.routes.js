@@ -6,6 +6,9 @@ import AllEmployees from '../pages/AllEmployees'
 import CreateEmployee from '../pages/CreateEmployee'
 import AllBonds from '../pages/AllBonds'
 import CreateBond from '../pages/CreateBond'
+import AllLoans from '../pages/AllLoans'
+import CreateLoan from '../pages/CreateLoan'
+import LoanDetails from '../pages/LoanDetails'
 
 let adminRoutes = [
     {
@@ -54,6 +57,24 @@ let adminRoutes = [
         path: "/createBond",
         name: "Create Bond",
         component: CreateBond,
+        exact: true,
+    },
+    {
+        path: "/allLoans",
+        name: "All Loans",
+        component: AllLoans,
+        exact: true,
+    },
+    {
+        path: "/createLoan",
+        name: "Create Loan",
+        component: CreateLoan,
+        exact: true,
+    },
+    {
+        path: "/loanDetails",
+        name: "Loan Details",
+        component: LoanDetails,
         exact: true,
     },
 ]

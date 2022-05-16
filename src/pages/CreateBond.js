@@ -17,6 +17,7 @@ export default function CreateBond() {
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
   const [type, setType] = useState("");
+  const [released, setReleased] = useState(false);
   const [clientId, setClientId] = useState("");
 
   //dropdown values
@@ -39,6 +40,7 @@ export default function CreateBond() {
           setType(bo?.data?.data?.type);
           setDetails(bo?.data?.data?.details);
           setClientId(bo?.data?.data?.clientId);
+          setReleased(bo?.data?.data?.released);
       } catch (error) {
           console.log(error);
       }
@@ -81,7 +83,8 @@ export default function CreateBond() {
             name,
             details,
             type,
-            clientId
+            clientId,
+            released
           }
 
           if(validate()) {
@@ -103,7 +106,8 @@ export default function CreateBond() {
                 name,
                 details,
                 type,
-                clientId
+                clientId,
+                released
             }
 
             let up = await updateBond(objId, data);
@@ -152,6 +156,16 @@ export default function CreateBond() {
                             }
                         </select>
                       </div>
+                    </div>
+
+                    <div className='row mb-3'>
+                        <div className='col-4'>
+                            <label className='form-label' htmlFor='rele'>Released</label>
+                            <select disabled={!editMode} className='form-select' id='rele' value={released} onChange={(e) => setReleased(e.target.value)}>
+                                <option value={false}>False</option>
+                                <option value={true}>True</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div className='row mb-3'>
