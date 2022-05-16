@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import Spinner from '../components/spinner';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
-import { getLoanForClient, getByLoanId } from '../controllers/loan.api.controller'
+import { getLoanDetailsForClient, getByLoanId } from '../controllers/loan.api.controller'
 import dayjs from 'dayjs';
 
 export default function ShowLoan() {
@@ -39,9 +39,10 @@ export default function ShowLoan() {
                     email,
                     nic
                 }
-                let loan = await getLoanForClient(data);
 
-                // console.log(loan);
+                let loan = await getLoanDetailsForClient(data);
+
+                console.log(loan);
                 toast.success("Loan Details Found!");
                 setLoans(loan?.data?.data);
             }

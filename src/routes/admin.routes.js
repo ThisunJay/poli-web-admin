@@ -9,8 +9,15 @@ import CreateBond from '../pages/CreateBond'
 import AllLoans from '../pages/AllLoans'
 import CreateLoan from '../pages/CreateLoan'
 import LoanDetails from '../pages/LoanDetails'
+import Home from '../pages/Home'
 
 let adminRoutes = [
+    {
+        path: "/Home",
+        name: "Home",
+        component: Home,
+        exact: true,
+    },
     {
         path: "/createUser",
         name: "Create User",

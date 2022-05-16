@@ -30,6 +30,18 @@ export const createLoan = async (data) => {
     })
 }
 
+export const createCollectionAPI = async (data) => {
+    return new Promise(async (resolve, reject) => {
+        let apiUrl = `${Config.host}/collections/create`;
+        try {
+            let result = await axios.post(apiUrl, data, config);
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 export const getOneLoanDetails = async (id) => {
     return new Promise(async (resolve, reject) => {
         let apiUrl = `${Config.host}/loans/get/${id}`;
@@ -54,7 +66,19 @@ export const updateLoan = async (id, data) => {
     })
 }
 
-export const getLoanForClient = async (data) => {
+export const getLoanForClient = async (id) => {
+    return new Promise(async (resolve, reject) => {
+        let apiUrl = `${Config.host}/loans/get/byclient/${id}`;
+        try {
+            let result = await axios.get(apiUrl, config);
+            resolve(result);
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
+export const getLoanDetailsForClient = async (data) => {
     return new Promise(async (resolve, reject) => {
         let apiUrl = `${Config.host}/loans/getInfo`;
         try {

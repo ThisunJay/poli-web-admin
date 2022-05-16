@@ -30,7 +30,13 @@ function Login() {
     login(data).then(res => {
       const loginData = res.data
       setCookies(loginData.token, loginData.user)
-      window.location.replace("/Home");
+      // console.log(loginData.user);
+      if(loginData?.user?.userType == "Collector") {
+        window.location.replace("/createCollection");
+      }
+      else {
+        window.location.replace("/Home");
+      }
     }).catch(err => {
       setEmailval('')
       setPassval('')

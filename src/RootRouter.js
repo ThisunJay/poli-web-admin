@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, useHistory, withRouter } from '
 import billingRoutes from './routes/billing'
 import indexRoutes from './routes/index'
 import adminRoutes from './routes/admin.routes'
+import collectorRoutes from './routes/collector.routes'
 import { checkSignedIn, getUserdetails } from './controllers/user.controller'
 
 class RootRouter extends React.Component {
@@ -22,6 +23,10 @@ class RootRouter extends React.Component {
     
             if (checkSignedInVal === true && role === "Admin") {
                 routes = [...adminRoutes, ...routes];
+            }
+            
+            else if (checkSignedInVal === true && role === "Collector") {
+                routes = [...collectorRoutes, ...routes];
             }
         }
 
