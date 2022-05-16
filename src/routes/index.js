@@ -1,5 +1,5 @@
 import Login from '../pages/Login'
-import Home from '../pages/Home'
+import ShowLoan from '../pages/ShowLoan'
 
 
 let indexRoutes = [
@@ -11,9 +11,9 @@ let indexRoutes = [
         exact: true,
     },
     {
-        path: "/Home",
-        name: "Home",
-        component: Home,
+        path: "/showLoan",
+        name: "Show Loan",
+        component: ShowLoan,
         exact: true,
     },
 ];

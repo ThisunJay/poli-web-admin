@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { login, checkSignedIn, setCookies } from '../controllers/user.controller'
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import * as FaIcons from 'react-icons/fa';
 function Login() {
 
   const [emailval, setEmailval] = useState("");
@@ -72,6 +74,10 @@ function Login() {
                   <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
                 </div> */}
                 <button type="submit" className="btn btn-primary">Login</button>
+
+                <Link to="/showLoan">
+                  <button type="button" className="btn btn-success mx-3"><FaIcons.FaHubspot /> Client Portal</button>
+                </Link>
               </form>
             </div>
           </div>
