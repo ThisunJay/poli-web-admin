@@ -6,6 +6,7 @@ import Spinner from '../components/spinner';
 import Navbar from '../components/Navbar'
 import * as FaIcons from 'react-icons/fa';
 import { getAllLoans } from '../controllers/loan.api.controller'
+import { CSVLink, CSVDownload } from "react-csv";
 const dayjs = require('dayjs');
 
 export default function AllLoans() {
@@ -41,6 +42,25 @@ export default function AllLoans() {
 
             <div className="shadow p-3 bg-body rounded">
             <button className='btn btn-primary mb-1'><Link to="/createLoan" style={{color: 'white', textDecoration: 'none'}}>New</Link></button>
+            <CSVLink data={tableData} 
+                headers={[
+                    {label: 'Object ID', key: '_id'},
+                    {label: 'Type', key: 'type'},
+                    {label: 'Date', key: 'date'},
+                    {label: 'Due Date', key: 'dueDate'},
+                    {label: 'Amount', key: 'amount'},
+                    {label: 'Full Amount', key: 'fullAmount'},
+                    {label: 'Remaining Amount', key: 'remainingAmount'},
+                    {label: 'instalment Amount', key: 'instalmentAmount'},
+                    {label: 'Number of Instalments', key: 'numberOfInstalments'},
+                    {label: 'Interest Rate', key: 'interestRate'},
+                    {label: 'Client Id', key: 'clientId'},
+                    {label: 'Paid', key: 'paid'},
+                ]}
+                filename={`Loans Report - ${dayjs().format('YYYY-MM-DD')}`}>
+                    <button className='btn btn-success mx-3'>Export to Excel
+                    </button>
+            </CSVLink>
                 <div className='tableFixHead'>
                     <table className="table">
                         <thead>

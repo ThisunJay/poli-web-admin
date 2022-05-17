@@ -6,6 +6,8 @@ import Spinner from '../components/spinner';
 import Navbar from '../components/Navbar'
 import { getAllClients } from '../controllers/client.api.controller'
 import * as FaIcons from 'react-icons/fa';
+import { CSVLink, CSVDownload } from "react-csv";
+import dayjs from 'dayjs';
 
 export default function AllClients() {
 
@@ -38,6 +40,21 @@ export default function AllClients() {
 
             <div className="shadow p-3 bg-body rounded">
                 <button className='btn btn-primary mb-1'><Link to="/createClient?mode=Create" style={{color: 'white', textDecoration: 'none'}}>New</Link></button>
+                <CSVLink data={tableData} 
+                    headers={[
+                        {label: 'Object ID', key: '_id'},
+                        {label: 'Full Name', key: 'fullName'},
+                        {label: 'Address', key: 'address'},
+                        {label: 'NIC', key: 'nic'},
+                        {label: 'Phone Number', key: 'phone'},
+                        {label: 'Email', key: 'email'},
+                        {label: 'Job', key: 'job'},
+                        {label: 'Workplace', key: 'workplace'},
+                    ]}
+                    filename={`Clients Report - ${dayjs().format('YYYY-MM-DD')}`}>
+                        <button className='btn btn-success mx-3'>Export to Excel
+                        </button>
+                </CSVLink>
                     <div className='tableFixHead'>
                         <table className="table">
                             <thead>

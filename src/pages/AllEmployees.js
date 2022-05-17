@@ -7,6 +7,8 @@ import Navbar from '../components/Navbar'
 import { getAllEmployees, deleteOneEmployee } from '../controllers/employee.api.controller'
 import * as FaIcons from 'react-icons/fa';
 import Modal from 'react-modal';
+import { CSVLink, CSVDownload } from "react-csv";
+import dayjs from 'dayjs';
 
 export default function AllEmployees() {
 
@@ -75,7 +77,23 @@ export default function AllEmployees() {
             </div>
 
             <div className="shadow p-3 bg-body rounded">
-        <button className='btn btn-primary mb-1'><Link to="/createEmployee?mode=Create" style={{color: 'white', textDecoration: 'none'}}>New</Link></button>
+            <button className='btn btn-primary mb-1'><Link to="/createEmployee?mode=Create" style={{color: 'white', textDecoration: 'none'}}>New</Link></button>
+            <CSVLink data={tableData} 
+                headers={[
+                    {label: 'Object ID', key: '_id'},
+                    {label: 'Full Name', key: 'fullName'},
+                    {label: 'Address', key: 'address'},
+                    {label: 'NIC', key: 'nic'},
+                    {label: 'Phone Number', key: 'phone'},
+                    {label: 'Email', key: 'email'},
+                    {label: 'Position', key: 'position'},
+                    {label: 'Department', key: 'department'},
+                    {label: 'Additional Info', key: 'additionalInfo'},
+                ]}
+                filename={`Employee Report - ${dayjs().format('YYYY-MM-DD')}`}>
+                    <button className='btn btn-success mx-3'>Export to Excel
+                    </button>
+            </CSVLink>
             <div className='tableFixHead'>
                 <table className="table">
                     <thead>

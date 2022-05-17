@@ -6,6 +6,8 @@ import Spinner from '../components/spinner';
 import Navbar from '../components/Navbar'
 import { getAllBonds } from '../controllers/bond.api.controller'
 import * as FaIcons from 'react-icons/fa';
+import { CSVLink, CSVDownload } from "react-csv";
+import dayjs from 'dayjs';
 
 export default function AllBonds() {
 
@@ -40,6 +42,19 @@ export default function AllBonds() {
 
             <div className="shadow p-3 bg-body rounded">
             <button className='btn btn-primary mb-1'><Link to="/createBond?mode=Create" style={{color: 'white', textDecoration: 'none'}}>New</Link></button>
+            <CSVLink data={tableData} 
+                headers={[
+                    {label: 'Object ID', key: '_id'},
+                    {label: 'Client ID', key: 'clientId'},
+                    {label: 'Name', key: 'name'},
+                    {label: 'Details', key: 'details'},
+                    {label: 'Type', key: 'type'},
+                    {label: 'Released', key: 'released'},
+                ]}
+                filename={`Bonds Report - ${dayjs().format('YYYY-MM-DD')}`}>
+                    <button className='btn btn-success mx-3'>Export to Excel
+                    </button>
+            </CSVLink>
                 <div className='tableFixHead'>
                     <table className="table">
                         <thead>
