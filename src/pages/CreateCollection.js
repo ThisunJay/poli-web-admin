@@ -4,6 +4,9 @@ import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar'
 import { getAllClients } from '../controllers/client.api.controller'
 import { getLoanForClient, getOneLoanDetails, createCollectionAPI } from '../controllers/loan.api.controller'
+import { jsPDF } from "jspdf";
+import 'jspdf-autotable'
+import { getUserdetails } from '../controllers/user.controller';
 
 export default function CreateCollection() {
 
@@ -88,6 +91,7 @@ export default function CreateCollection() {
                 }
                 let col = await createCollectionAPI(data);
 
+                downloadPDF();
                 onClearClicked();
                 toast.success("Collection Created!");
             }
@@ -112,6 +116,51 @@ export default function CreateCollection() {
         }
 
         return true;
+    }
+
+    const downloadPDF = () => {
+        try {
+            const doc = new jsPDF();
+            
+            let client = clients.find(i => {
+                if(i._id == clientId) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            })
+
+            let loan = loans.find(i => {
+                if(i._id == loanId) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            })
+
+            // console.log(loan);
+
+            doc.text("Payment Invoice for - " + client?.fullName + " - " + dayjs(date).format("YYYY-MM-DD"), 10, 10);
+
+            doc.autoTable({
+                head: [['Client', 'Loan', 'Date', 'Amount']],
+                body: [
+                    [client?.fullName, loan?.type, dayjs(date).format("YYYY-MM-DD"), amount]
+                ]
+            })
+
+            doc.setFontSize(10);
+            doc.text("The money was collected by - " + getUserdetails().fullName + " (" + getUserdetails().email + ")", 10, 40);
+
+            // console.log(client);
+
+            doc.save(`Payment - ${client?.fullName} - ${dayjs(date).format("YYYY-MM-DD")}.pdf`);
+        } catch (error) {
+            console.log(error);
+            toast.error("PDF download Failed!");
+        }
     }
 
   return (
@@ -174,6 +223,7 @@ export default function CreateCollection() {
 
                         <button type='button' className='btn btn-primary' onClick={(e) => onSubmitClicked()}>Submit</button>
                         <button type='button' className='btn btn-danger mx-3' onClick={(e) => onClearClicked()}>Clear</button>
+                        {/* <button type='button' className='btn btn-success' onClick={(e) => downloadPDF()}>Download PDF</button> */}
                     </form>
                 </div>
             </div>

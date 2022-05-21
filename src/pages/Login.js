@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { login, checkSignedIn, setCookies } from '../controllers/user.controller'
+import { login, checkSignedIn, setCookies, getUserdetails } from '../controllers/user.controller'
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
@@ -49,10 +49,15 @@ function Login() {
     let alreadyLogin = checkSignedIn()
     console.log(alreadyLogin);
     if (alreadyLogin) {
-      window.location.replace('/Home')
+      let user = getUserdetails();
+      if(user.type == "Collector") {
+        window.location.replace('/createCollection')
+      }
+      else {
+        window.location.replace('/Home')
+      }
     }
   }, []);
-
 
   return (
     <div>

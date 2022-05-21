@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import { getLoanDetailsForClient, getByLoanId } from '../controllers/loan.api.controller'
 import dayjs from 'dayjs';
+import { jsPDF } from "jspdf";
+import 'jspdf-autotable'
+import { CSVLink, CSVDownload } from "react-csv";
 
 export default function ShowLoan() {
 
@@ -70,6 +73,34 @@ export default function ShowLoan() {
         }
     }
 
+    const onDownloadPDFClicked = () => {
+        try {
+            const doc = new jsPDF();
+
+            doc.text("Collection Details for - " + email + " - " + nic, 10, 10);
+
+            let bodyData = [];
+
+            for (let i = 0; i < collections.length; i++) {
+                let el = collections[i];
+                let item = [];
+                item.push([dayjs(el.date).format("YYYY-MM-DD")], [el.amount]);
+                bodyData.push(item);
+            }
+
+            // console.log(bodyData);
+
+            doc.autoTable({
+                head: [['Date', 'Amount']],
+                body: bodyData
+            })
+
+            doc.save(`Collections for - ${email} - ${nic}.pdf`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
   return (
     <div className='container'>
         <div className='row'>
@@ -121,6 +152,20 @@ export default function ShowLoan() {
                         </div> 
                         {/* <p>{JSON.stringify(collections)}</p> */}
                         <button type="button" className="btn btn-primary" onClick={(e) => onSubmitClicked()}><FaIcons.FaSearch /> Find Loans</button>   
+                        <button type="button"
+                            onClick={(e) => onDownloadPDFClicked()}
+                            className="btn btn-danger mx-3" 
+                            disabled={loans.length > 0 ? false : true}>Download PDF</button>   
+                        <CSVLink data={collections} 
+                            headers={[
+                                {label: 'Object ID', key: '_id'},
+                                {label: 'Date', key: 'date'},
+                                {label: 'Amount', key: 'amount'},
+                            ]}
+                            filename={`Collection Report - ${dayjs().format('YYYY-MM-DD')}`}>
+                                <button className='btn btn-success' disabled={loans.length > 0 ? false : true}>Download Excel
+                                </button>
+                        </CSVLink> 
                     </div>
                 </div>
             </div>
